@@ -278,7 +278,7 @@ header nav ul{align-items:flex-end;text-align:right}
 @media(min-width:768px){.pv-gal:not(.fx) .pv-i:last-child:nth-child(even){grid-column:1/-1}}
 .logo img{width:clamp(48px,6vw,78px)!important}
 .pv-logo{height:36px!important}
-#intro{animation:introOut .6s ease 3s both!important}
+#intro{animation:introOut .6s ease 2s both!important}
 #intro img{width:min(520px,80vw)!important;height:auto;opacity:1!important;animation:none!important;transform:none!important}
 #ab .pv-logo.pv-full{height:34px!important;width:auto}
 
@@ -606,7 +606,7 @@ var sx=null;lb.addEventListener('touchstart',function(e){sx=e.touches[0].clientX
 lb.addEventListener('touchend',function(e){if(sx===null)return;var dx=e.changedTouches[0].clientX-sx;sx=null;if(Math.abs(dx)>50)step(dx<0?1:-1)},{passive:true});
 // primeira imagem do slider tambem faz o zoom lento
 var s=document.querySelectorAll('.hero .slide')[3];
-if(s&&!window.matchMedia('(prefers-reduced-motion: reduce)').matches){s.classList.remove('on');setTimeout(function(){s.classList.add('on')},document.getElementById('intro')?3000:80)}
+if(s&&!window.matchMedia('(prefers-reduced-motion: reduce)').matches){s.classList.remove('on');setTimeout(function(){s.classList.add('on')},document.getElementById('intro')?2000:80)}
 })();
 </script>
 <script>
