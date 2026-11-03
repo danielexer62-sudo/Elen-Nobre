@@ -321,9 +321,11 @@ header nav ul{align-items:flex-end;text-align:right}
 #pv .pv-gal .pv-i.mo.pl{grid-column:1/-1;background-color:#fff;cursor:zoom-in}
 @media(max-width:370px){#ab .ab-top{font-size:9px;letter-spacing:.05em;column-gap:6px;padding-left:14px;padding-right:14px}#ab .ab-nav{gap:8px}#ab .ab-mono{height:32px}#pv .pv-h,#pb .pv-h,#ab .pv-h{padding-left:14px;padding-right:14px}}
 </style>
+<style>.pv-bg .fb,.cores .fb{filter:none!important;inset:0}.slide.port::before{inset:0;filter:none;background:linear-gradient(rgba(0,0,0,.45),rgba(0,0,0,.45)),var(--bimg,var(--img)) center/cover no-repeat}</style>
 </head>
 <body>
-<div id="intro" aria-hidden="true"></div><script>try{if(location.hash||sessionStorage.getItem("mr-intro")){document.getElementById("intro").remove()}else{sessionStorage.setItem("mr-intro","1")}}catch(e){}</script>
+<div id="intro" aria-hidden="true"></div><script>window.mrBl=function(u){return (u||'').replace(/img\/([^"')\s]+\.jpg)/,'img/b/$1')};</script>
+<script>try{if(location.hash||sessionStorage.getItem("mr-intro")){document.getElementById("intro").remove()}else{sessionStorage.setItem("mr-intro","1")}}catch(e){}</script>
 <main>
 <section class="hero" aria-roledescription="carrossel" aria-label="Projetos em destaque" id="hero">
   <div class="slide s1 on"></div><div class="slide s2" aria-hidden="true"></div><div class="slide s3" aria-hidden="true"></div>
@@ -413,7 +415,7 @@ header nav ul{align-items:flex-end;text-align:right}
   hero.addEventListener('focusout',function(){paused=false;start()});
   var fb=document.querySelector('.cores'),fu=slides.map(function(s){return (s.style.backgroundImage||s.style.getPropertyValue('--img')).trim()}),fa=[],fx=0;
   for(var qi=0;qi<2;qi++){var d=document.createElement('div');d.className='fb';fb.insertBefore(d,fb.firstChild);fa.push(d)}
-  window.fbSync=function(i){var n=fa[fx^1],o=fa[fx];n.style.backgroundImage=fu[i];n.classList.add('on');o.classList.remove('on');fx^=1};
+  window.fbSync=function(i){var n=fa[fx^1],o=fa[fx];n.style.backgroundImage=window.mrBl(fu[i]);n.classList.add('on');o.classList.remove('on');fx^=1};
   var BASE='';
   function slug(n){return n.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'')}
   var INFO={
@@ -480,7 +482,7 @@ header nav ul{align-items:flex-end;text-align:right}
   function syncBg(){
     if(io){io.disconnect();io=null}
     var bgs=q('.pv-bg').children,its=Array.prototype.slice.call(q('.pv-gal').children).filter(function(e){return e.classList.contains('pv-i')}),rt=its.map(function(){return 0}),cb=-1;
-    function set(i){if(i===cb||!its[i])return;cb=i;var nx=bgs[bgx^1],ol=bgs[bgx];nx.style.backgroundImage=its[i].style.backgroundImage;nx.classList.add('on');ol.classList.remove('on');bgx^=1}
+    function set(i){if(i===cb||!its[i])return;cb=i;var nx=bgs[bgx^1],ol=bgs[bgx];nx.style.backgroundImage=window.mrBl(its[i].style.backgroundImage);nx.classList.add('on');ol.classList.remove('on');bgx^=1}
     set(0);
     if(!window.IntersectionObserver)return;
     io=new IntersectionObserver(function(es){es.forEach(function(e){rt[its.indexOf(e.target)]=e.intersectionRatio});var b=0;rt.forEach(function(v,i){if(v>rt[b])b=i});set(b)},{root:pv,threshold:[0,.2,.4,.6,.8,1]});
