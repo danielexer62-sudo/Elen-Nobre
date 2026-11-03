@@ -18,6 +18,7 @@
 <meta property="og:url" content="https://elennobre.vercel.app/"><link rel="canonical" href="https://elennobre.vercel.app/">
 <meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Elen Nobre | Arquitetura e Design de Interiores"><meta name="twitter:description" content="Arquitetura e design de interiores em Belo Horizonte, Minas Gerais. Conheça os projetos de Elen Nobre."><meta name="twitter:image" content="https://elennobre.vercel.app/og-image.jpg">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"ProfessionalService","name":"Elen Nobre","description":"Arquitetura e design de interiores em Belo Horizonte, Minas Gerais. Conheça os projetos de Elen Nobre.","areaServed":"Belo Horizonte, MG","address":{"@type":"PostalAddress","addressLocality":"Belo Horizonte","addressRegion":"MG","addressCountry":"BR"}}</script>
+<link rel="preload" as="image" href="img/a8ede04e5b.webp">
 <link rel="preload" as="image" href="img/19d693ac92.jpg">
 
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500&display=swap">
@@ -278,7 +279,7 @@ header nav ul{align-items:flex-end;text-align:right}
 @media(min-width:768px){.pv-gal:not(.fx) .pv-i:last-child:nth-child(even){grid-column:1/-1}}
 .logo img{width:clamp(48px,6vw,78px)!important}
 .pv-logo{height:36px!important}
-#intro{animation:introOut .6s ease 2s both!important}
+#intro{animation:none!important}#intro.out{animation:introOut .6s ease both!important}
 #intro img{width:min(520px,80vw)!important;height:auto;opacity:1!important;animation:none!important;transform:none!important}
 #ab .pv-logo.pv-full{height:34px!important;width:auto}
 
@@ -577,7 +578,10 @@ header nav ul{align-items:flex-end;text-align:right}
 </script>
 <script>
 (function(){var i=document.getElementById('intro');if(!i)return;var im=document.createElement('img');im.alt='';im.setAttribute('aria-hidden','true');im.src='img/a8ede04e5b.webp';i.appendChild(im);
-i.addEventListener('click',function(){i.remove()});setTimeout(function(){if(i.parentNode)i.remove()},4800)})();
+var done=0;function out(){if(done)return;done=1;i.classList.add('out');window.mrIntroOutDone=1;try{window.dispatchEvent(new Event('mr-intro-out'))}catch(e){}setTimeout(function(){if(i.parentNode)i.remove()},800)}
+function go(){setTimeout(out,1900)}
+if(im.complete&&im.naturalWidth)go();else{im.addEventListener('load',go,{once:true});im.addEventListener('error',out,{once:true});setTimeout(function(){if(!done)out()},5000)}
+i.addEventListener('click',function(){done=1;window.mrIntroOutDone=1;try{window.dispatchEvent(new Event('mr-intro-out'))}catch(e){}i.remove()})})();
 </script>
 <script>
 (function(){
@@ -606,7 +610,7 @@ var sx=null;lb.addEventListener('touchstart',function(e){sx=e.touches[0].clientX
 lb.addEventListener('touchend',function(e){if(sx===null)return;var dx=e.changedTouches[0].clientX-sx;sx=null;if(Math.abs(dx)>50)step(dx<0?1:-1)},{passive:true});
 // primeira imagem do slider tambem faz o zoom lento
 var s=document.querySelectorAll('.hero .slide')[3];
-if(s&&!window.matchMedia('(prefers-reduced-motion: reduce)').matches){s.classList.remove('on');setTimeout(function(){s.classList.add('on')},document.getElementById('intro')?2000:80)}
+if(s&&!window.matchMedia('(prefers-reduced-motion: reduce)').matches){s.classList.remove('on');var go2=function(){setTimeout(function(){s.classList.add('on')},120)};if(document.getElementById('intro')&&!window.mrIntroOutDone){window.addEventListener('mr-intro-out',go2,{once:true});setTimeout(function(){s.classList.add('on')},7000)}else go2()}
 })();
 </script>
 <script>
