@@ -308,6 +308,12 @@ header nav ul{align-items:flex-end;text-align:right}
 #ab .ab3 .ab-ph{position:relative!important;top:auto!important;overflow:hidden;isolation:isolate;transition:box-shadow .9s cubic-bezier(.2,.7,.2,1),filter .6s ease}
 #ab .ab3 .ab-ph::before{content:'';position:absolute;inset:0;background:inherit;border-radius:inherit;transition:transform 1.4s cubic-bezier(.2,.7,.2,1)}
 @media(hover:hover){#ab .ab3 .ab-ph:hover{box-shadow:0 34px 90px rgba(0,0,0,.42);filter:brightness(1.05)}#ab .ab3 .ab-ph:hover::before{transform:scale(1.06)}}
+#ab .ab-wm-h{line-height:1}
+#ab .ab-name{display:inline-block;font-family:'Cormorant Garamond','Cormorant',Georgia,'Times New Roman',serif;font-weight:500;font-size:clamp(42px,3.9vw,76px);line-height:1;letter-spacing:.005em;color:var(--lxsand);white-space:nowrap}
+#ab .ab-name .ch{display:inline-block;white-space:pre;transition:color 1.3s ease}
+#ab .ab-name .ch:hover,#ab .ab-name .ch.hot{color:var(--lxhov);transition-duration:.12s}
+#ab .ab-wmk{position:fixed;z-index:0;left:50%;bottom:clamp(-10px,-1vh,0px);transform:translateX(-50%);width:clamp(320px,56vw,900px);height:auto;opacity:.09;pointer-events:none;user-select:none}
+#ab .ab-b,#ab .ab-top{position:relative;z-index:1}
 #ab .ab-mono{filter:none!important}
 #pb .pv-c,#ab .pv-c,.pb-m{color:#E2CEB6!important}
 .pb-m{opacity:1!important}
@@ -683,7 +689,7 @@ try{if(document.getElementById("intro")){var H=document.documentElement;H.classL
   var ab=document.createElement('div');ab.id='ab';ab.hidden=true;ab.setAttribute('role','dialog');ab.setAttribute('aria-modal','true');document.body.appendChild(ab);
   var ABMONO='img/abmono_new.webp',ABWORD='img/abword_new.webp';
   function openAbout(){
-    ab.innerHTML='<div class="ab-bg" aria-hidden="true"></div><div class="pv-h ab-top"><a href="#" id="ab-x">← Página principal</a><img class="ab-mono" alt="Elen Nobre" src="'+ABMONO+'#'+Date.now()+'"><nav class="ab-nav"><a href="#sobre" aria-current="page">Sobre</a><a href="#contato" id="ab-c">Contato</a></nav></div><div class="ab-b ab3"><div class="ab-l"><p class="pv-c">Quem sou eu</p><h2 class="ab-wm-h"><img class="ab-wm" alt="Elen Nobre" src="'+ABWORD+'#'+Date.now()+'"></h2><p class="ab-p">Designer de Interiores especializada na criação de ambientes que equilibram elegância, funcionalidade e identidade. Desenvolvo projetos com olhar atento aos detalhes, valorizando materiais, formas e composições para criar espaços únicos, atemporais e conectados ao estilo de vida de cada cliente.</p></div><div class="ab-ph" role="img" aria-label="Foto de Elen Nobre"></div><div class="ab-r"><h3 class="ab-h">De onde vim</h3><p class="ab-p">Natural de Belo Horizonte, Minas Gerais, encontrei no Design de Interiores uma forma de unir criatividade, sensibilidade e propósito. Sempre acreditei que os espaços vão além da estética: eles refletem histórias, despertam sentimentos e influenciam a maneira como vivemos.\n\nFoi esse olhar que me levou à área, despertando meu interesse em transformar ambientes em espaços que traduzem a essência de cada pessoa. Hoje, busco desenvolver projetos que equilibram sofisticação, funcionalidade e personalidade, criando ambientes únicos, pensados para acolher, inspirar e fazer sentido para quem os vive.</p></div></div>';
+    ab.innerHTML='<div class="ab-bg" aria-hidden="true"></div><img class="ab-wmk" aria-hidden="true" alt="" src="img/word_beige.png"><div class="pv-h ab-top"><a href="#" id="ab-x">← Página principal</a><img class="ab-mono" alt="Elen Nobre" src="'+ABMONO+'#'+Date.now()+'"><nav class="ab-nav"><a href="#sobre" aria-current="page">Sobre</a><a href="#contato" id="ab-c">Contato</a></nav></div><div class="ab-b ab3"><div class="ab-l"><p class="pv-c">Quem sou eu</p><h2 class="ab-wm-h"><span class="ab-name">Elen Nobre</span></h2><p class="ab-p">Designer de Interiores especializada na criação de ambientes que equilibram elegância, funcionalidade e identidade. Desenvolvo projetos com olhar atento aos detalhes, valorizando materiais, formas e composições para criar espaços únicos, atemporais e conectados ao estilo de vida de cada cliente.</p></div><div class="ab-ph" role="img" aria-label="Foto de Elen Nobre"></div><div class="ab-r"><h3 class="ab-h">De onde vim</h3><p class="ab-p">Natural de Belo Horizonte, Minas Gerais, encontrei no Design de Interiores uma forma de unir criatividade, sensibilidade e propósito. Sempre acreditei que os espaços vão além da estética: eles refletem histórias, despertam sentimentos e influenciam a maneira como vivemos.\n\nFoi esse olhar que me levou à área, despertando meu interesse em transformar ambientes em espaços que traduzem a essência de cada pessoa. Hoje, busco desenvolver projetos que equilibram sofisticação, funcionalidade e personalidade, criando ambientes únicos, pensados para acolher, inspirar e fazer sentido para quem os vive.</p></div></div>';
 
     var abph=ab.querySelector('.ab-ph');abph.style.backgroundImage='url("'+ABPHOTO+'")';abph.style.backgroundSize='cover';abph.style.backgroundPosition='center top';abph.style.backgroundColor='#fff';abph.style.borderRadius='';
     ab.querySelector('#ab-c').onclick=function(e){e.preventDefault();closePv();try{history.replaceState(null,'','#contato')}catch(x){}setTimeout(function(){window.mrGoBottom()},60)};
@@ -982,9 +988,9 @@ function watch(id,sel){
   var busy=0,run=function(){if(busy)return;busy=1;scan(r,sel);busy=0};
   run();new MutationObserver(function(){run()}).observe(r,{childList:true,subtree:true});
 }
-function init(){watch('pb','.pv-t,.pb-t');watch('pv','.pv-t')}
+function init(){watch('pb','.pv-t,.pb-t');watch('pv','.pv-t');watch('ab','.ab-name')}
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();
-document.addEventListener('pointerdown',function(e){var x=e.target.closest&&e.target.closest('#pb .ch,#pv .ch');if(!x||e.pointerType==='mouse')return;x.classList.add('hot');setTimeout(function(){x.classList.remove('hot')},900)});
+document.addEventListener('pointerdown',function(e){var x=e.target.closest&&e.target.closest('#pb .ch,#pv .ch,#ab .ch');if(!x||e.pointerType==='mouse')return;x.classList.add('hot');setTimeout(function(){x.classList.remove('hot')},900)});
 })();
 </script>
 <script>
